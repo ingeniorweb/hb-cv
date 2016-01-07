@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>txt list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for txt in txts %}
+            <tr>
+                <td><a href="{{ path('admin_textes_show', { 'id': txt.id }) }}">{{ txt.id }}</a></td>
+                <td>{{ txt.nom }}</td>
+                <td>{{ txt.description }}</td>
+                <td>{{ txt.image }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_textes_show', { 'id': txt.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_textes_edit', { 'id': txt.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_textes_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

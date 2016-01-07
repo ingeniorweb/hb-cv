@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>experience list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Entreprise</th>
+                <th>Date</th>
+                <th>Debut</th>
+                <th>Fin</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for experience in experiences %}
+            <tr>
+                <td><a href="{{ path('admin_experiences_show', { 'id': experience.id }) }}">{{ experience.id }}</a></td>
+                <td>{{ experience.entreprise }}</td>
+                <td>{% if experience.date %}{{ experience.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if experience.debut %}{{ experience.debut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if experience.fin %}{{ experience.fin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ experience.description }}</td>
+                <td>{{ experience.image }}</td>
+                <td>{% if experience.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_experiences_show', { 'id': experience.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_experiences_edit', { 'id': experience.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_experiences_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

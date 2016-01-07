@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>experience</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ experience.id }}</td>
+            </tr>
+            <tr>
+                <th>Entreprise</th>
+                <td>{{ experience.entreprise }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if experience.date %}{{ experience.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Debut</th>
+                <td>{% if experience.debut %}{{ experience.debut|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fin</th>
+                <td>{% if experience.fin %}{{ experience.fin|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ experience.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ experience.image }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if experience.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_experiences_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_experiences_edit', { 'id': experience.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
